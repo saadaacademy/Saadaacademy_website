@@ -192,6 +192,9 @@ html.scrolled nav a[aria-current="page"]{border-bottom-color:var(--blue)}
 .lb button{position:absolute;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
 .lb button:hover{background:rgba(255,255,255,.32)}
 .lb-x{top:1rem;right:1rem}.lb-p{left:.75rem;top:50%}.lb-n{right:.75rem;top:50%}
+
+.hvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+@media (prefers-reduced-motion:reduce){.hvid{display:none}.hero{background:#000 url(images/hero-2.jpg) center/cover no-repeat}}
 </style>
 </head>
 <body>
@@ -215,7 +218,7 @@ html.scrolled nav a[aria-current="page"]{border-bottom-color:var(--blue)}
 
 <main id="home">
 <div class="hero">
-<div class="slides" aria-hidden="true"><div class="slide s1"></div><div class="slide s2"></div></div>
+<video class="hvid" autoplay muted loop playsinline preload="metadata" poster="images/hero-2.jpg" aria-hidden="true"><source src="images/hero.mp4" type="video/mp4"></video>
 <div class="wrap">
 <h1>Success here and hereafter</h1>
 <div class="btns">
@@ -363,6 +366,7 @@ n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.re
 document.querySelectorAll('.card').forEach(function(c){var t=c.querySelector('.ttl');t.addEventListener('click',function(){var o=c.classList.toggle('open');t.setAttribute('aria-expanded',o)})});
 if(document.body.hasAttribute('data-solid')){d.classList.add('scrolled')}
 else{var s=function(){d.classList.toggle('scrolled',window.scrollY>40)};window.addEventListener('scroll',s,{passive:true});s()}
+var v=document.querySelector('.hvid');if(v){v.muted=true;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){})}
 var grid=document.getElementById('grid');
 if(grid){
 var box=document.createElement('div');box.className='lb';box.hidden=true;box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','Photo viewer');
